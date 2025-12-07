@@ -41,11 +41,12 @@ app.get('/db-health', async (req, res) => {
 
   if (conn) {
     res.json({ db_status: 'OK', timestamp: new Date() });
-    conn.end();
+    await conn.end();
   } else {
     res.status(500).json({ db_status: 'ERROR', timestamp: new Date() });
   }
 });
+
 // Teste inicial de conexão
 connectDB();
 
